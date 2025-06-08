@@ -209,6 +209,10 @@ Os testes cobrem cenários de sucesso, falha, validação de dados e integraçã
 Caso haja algum adendo ou dúvida sobre o projeto desenvolvido
 entrar em contato pelo mesmo email ao qual foi enviado(daniel2018arj@gmail.com ou daniel.arj.profissional@gmail.com).
 
+## Demonstração de algumas partes da implementação por meio de fotos
+
+Segue link para visualização -> https://drive.google.com/drive/folders/1OVzqZSmXGPJ_VahbgAOp6LfPkvBLMNIC?usp=sharing
+
 ---
 
 **Obrigado pela oportunidade, aguardo retorno sobre o desafio!**
