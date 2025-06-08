@@ -36,8 +36,8 @@ Este projeto implementa uma API RESTful para gerenciamento de votações em paut
 
 ### Pré-requisitos
 - Java JDK 17 ou superior instalado
-- Maven ou Gradle para build para instalação das dependências
-- Git para clone do repositório em ambiente local.
+- Maven ou Gradle para build e instalação das dependências necessárias.
+- Git para clone em ambiente local.
 
 ### Passos para execução
 
@@ -54,20 +54,20 @@ Este projeto implementa uma API RESTful para gerenciamento de votações em paut
 2. Compile e rode a aplicação:
    - Com Maven:
      ```bash
-     mvn clean spring-boot:run
+     mvn clean spring-boot:run || ./mvnw spring-boot:run
      ```
    - Ou com Gradle:
      ```bash
      ./gradlew bootRun
      ```
-  - Ou execute a application manualmente:
+   - Ou executando a classe principal manualmente:
      ```bash
-     ./gradlew bootRun
+     br.com.votacao.VotacaoApplication
      ```
 
 3. A aplicação estará disponível em:
    ```
-   br.com.votacao.VotacaoApplication
+   http://localhost:8080
    ```
 
 ---
