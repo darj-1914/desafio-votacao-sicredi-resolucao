@@ -1,4 +1,4 @@
-package br.com.votacao.controller;
+package br.com.votacao.controller.v2;
 
 import br.com.votacao.model.Pauta;
 import br.com.votacao.model.SessaoVotacao;
@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/sessoes")
-public class SessaoVotacaoController {
+@RequestMapping("/api/v2/sessoes")
+public class SessaoVotacaoControllerV2 {
 
     private final SessaoVotacaoService sessaoService;
     private final PautaService pautaService;
 
-    public SessaoVotacaoController(SessaoVotacaoService sessaoService, PautaService pautaService) {
+    public SessaoVotacaoControllerV2(SessaoVotacaoService sessaoService, PautaService pautaService) {
         this.sessaoService = sessaoService;
         this.pautaService = pautaService;
     }

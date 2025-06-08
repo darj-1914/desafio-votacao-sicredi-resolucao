@@ -1,4 +1,4 @@
-package br.com.votacao.controller;
+package br.com.votacao.controller.v1;
 
 import br.com.votacao.model.Pauta;
 import br.com.votacao.service.PautaService;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pautas")
-public class PautaController {
+@RequestMapping("/api/v1/pautas")
+public class PautaControllerV1 {
 
     private final PautaService pautaService;
 
-    public PautaController(PautaService pautaService) {
+    public PautaControllerV1(PautaService pautaService) {
         this.pautaService = pautaService;
     }
 

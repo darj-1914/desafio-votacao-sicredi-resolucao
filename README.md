@@ -1,119 +1,210 @@
-# starting first commit
+# Aplicação de Votação - Documentação
 
-# Votação
+## Visão Geral
+Este projeto implementa uma API RESTful para gerenciamento de votações em pautas, com controle de sessões, votos, e integração externa para validação de CPF. Foi desenvolvido com foco em simplicidade e eficiência, evitando overengineering.
 
-## Objetivo
+---
 
-No cooperativismo, cada associado possui um voto e as decisões são tomadas em assembleias, por votação. Imagine que você deve criar uma solução para dispositivos móveis para gerenciar e participar dessas sessões de votação.
-Essa solução deve ser executada na nuvem e promover as seguintes funcionalidades através de uma API REST:
+## Tecnologias Utilizadas
+- Java 17+
+- Spring Boot
+- Spring MVC (REST API)
+- Spring MockMvc para testes
+- Swagger/OpenAPI para documentação da API
+- JUnit 5 para testes unitários
+- Mockito para mocks nos testes
+- Ferramentas de performance (a definir)
+- H2 Database (modo persistente - os dados são salvos em arquivo local para manter o estado entre reinicializações)
 
-- Cadastrar uma nova pauta
-- Abrir uma sessão de votação em uma pauta (a sessão de votação deve ficar aberta por
-  um tempo determinado na chamada de abertura ou 1 minuto por default)
-- Receber votos dos associados em pautas (os votos são apenas 'Sim'/'Não'. Cada associado
-  é identificado por um id único e pode votar apenas uma vez por pauta)
-- Contabilizar os votos e dar o resultado da votação na pauta
+---
 
-Para fins de exercício, a segurança das interfaces pode ser abstraída e qualquer chamada para as interfaces pode ser considerada como autorizada. A solução deve ser construída em java, usando Spring-boot, mas os frameworks e bibliotecas são de livre escolha (desde que não infrinja direitos de uso).
+## Estrutura da API e Versionamento
+- API base: `/api/v1`
+- Versionamento via URL, garantindo compatibilidade e evolução futura.
 
-É importante que as pautas e os votos sejam persistidos e que não sejam perdidos com o restart da aplicação.
+---
 
-O foco dessa avaliação é a comunicação entre o backend e o aplicativo mobile. Essa comunicação é feita através de mensagens no formato JSON, onde essas mensagens serão interpretadas pelo cliente para montar as telas onde o usuário vai interagir com o sistema. A aplicação cliente não faz parte da avaliação, apenas os componentes do servidor. O formato padrão dessas mensagens será detalhado no anexo 1.
+## Funcionalidades Principais
+- Cadastro e abertura de sessões de votação para pautas.
+- Registro e contagem de votos com validação de permissão via serviço externo.
+- Consulta dos resultados de votação.
+- Tratamento adequado de erros e respostas HTTP claras.
 
-## Como proceder
+---
 
-Por favor, **CLONE** o repositório e implemente sua solução, ao final, notifique a conclusão e envie o link do seu repositório clonado no GitHub, para que possamos analisar o código implementado.
+## Como Rodar a Aplicação
 
-Lembre de deixar todas as orientações necessárias para executar o seu código.
+### Pré-requisitos
+- Java JDK 17 ou superior instalado
+- Maven ou Gradle para build (conforme seu projeto)
+- Banco de dados configurado (se aplicável)
 
-### Tarefas bônus
+### Passos para execução
 
-- Tarefa Bônus 1 - Integração com sistemas externos
-  - Criar uma Facade/Client Fake que retorna aleátoriamente se um CPF recebido é válido ou não.
-  - Caso o CPF seja inválido, a API retornará o HTTP Status 404 (Not found). Você pode usar geradores de CPF para gerar CPFs válidos
-  - Caso o CPF seja válido, a API retornará se o usuário pode (ABLE_TO_VOTE) ou não pode (UNABLE_TO_VOTE) executar a operação. Essa operação retorna resultados aleatórios, portanto um mesmo CPF pode funcionar em um teste e não funcionar no outro.
+# Instruções para Rodar e Testar a Aplicação de Votação
 
+## Passos para Rodar a Aplicação
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/darj-1914/desafio-votacao-sicredi-resolucao.git
+   cd desafio-votacao-sicredi-resolucao
+   ```
+
+2. Compile e rode a aplicação:
+   - Com Maven:
+     ```bash
+     mvn clean spring-boot:run
+     ```
+   - Ou com Gradle:
+     ```bash
+     ./gradlew bootRun
+     ```
+
+3. A aplicação estará disponível em:
+   ```
+   http://localhost:8080
+   ```
+
+---
+
+## Como Testar a API
+
+### Usando Swagger UI
+
+A documentação interativa da API está disponível em:
 ```
-// CPF Ok para votar
-{
-    "status": "ABLE_TO_VOTE
-}
-// CPF Nao Ok para votar - retornar 404 no client tb
-{
-    "status": "UNABLE_TO_VOTE
-}
+http://localhost:8080/swagger-ui.html
+```
+ou, dependendo da configuração,
+```
+http://localhost:8080/swagger-ui/index.html
 ```
 
-Exemplos de retorno do serviço
+Lá você pode consultar todos os endpoints e testar requisições diretamente pelo navegador.
 
-### Tarefa Bônus 2 - Performance
+### Endpoints disponíveis
 
-- Imagine que sua aplicação possa ser usada em cenários que existam centenas de
-  milhares de votos. Ela deve se comportar de maneira performática nesses
-  cenários
-- Testes de performance são uma boa maneira de garantir e observar como sua
-  aplicação se comporta
+## Votos
 
-### Tarefa Bônus 3 - Versionamento da API
-
-○ Como você versionaria a API da sua aplicação? Que estratégia usar?
-
-## O que será analisado
-
-- Simplicidade no design da solução (evitar over engineering)
-- Organização do código
-- Arquitetura do projeto
-- Boas práticas de programação (manutenibilidade, legibilidade etc)
-- Possíveis bugs
-- Tratamento de erros e exceções
-- Explicação breve do porquê das escolhas tomadas durante o desenvolvimento da solução
-- Uso de testes automatizados e ferramentas de qualidade
-- Limpeza do código
-- Documentação do código e da API
-- Logs da aplicação
-- Mensagens e organização dos commits
-
-## Dicas
-
-- Teste bem sua solução, evite bugs
-- Deixe o domínio das URLs de callback passiveis de alteração via configuração, para facilitar
-  o teste tanto no emulador, quanto em dispositivos fisicos.
-  Observações importantes
-- Não inicie o teste sem sanar todas as dúvidas
-- Iremos executar a aplicação para testá-la, cuide com qualquer dependência externa e
-  deixe claro caso haja instruções especiais para execução do mesmo
-  Classificação da informação: Uso Interno
-
-## Anexo 1
-
-### Introdução
-
-A seguir serão detalhados os tipos de tela que o cliente mobile suporta, assim como os tipos de campos disponíveis para a interação do usuário.
-
-### Tipo de tela – FORMULARIO
-
-A tela do tipo FORMULARIO exibe uma coleção de campos (itens) e possui um ou dois botões de ação na parte inferior.
-
-O aplicativo envia uma requisição POST para a url informada e com o body definido pelo objeto dentro de cada botão quando o mesmo é acionado. Nos casos onde temos campos de entrada
-de dados na tela, os valores informados pelo usuário são adicionados ao corpo da requisição. Abaixo o exemplo da requisição que o aplicativo vai fazer quando o botão “Ação 1” for acionado:
-
-```
-POST http://seudominio.com/ACAO1
+### `POST /api/v1/votos`
+Registra um voto.  
+**Body JSON esperado:**
+```json
 {
-    “campo1”: “valor1”,
-    “campo2”: 123,
-    “idCampoTexto”: “Texto”,
-    “idCampoNumerico: 999
-    “idCampoData”: “01/01/2000”
+  "cpf": "12345678901",
+  "associadoId": 1,
+  "pautaId": 1,
+  "opcao": "SIM" // ou "NAO"
 }
 ```
+**Retorno:** voto registrado ou erro (CPF inválido, voto duplicado, etc).
 
-Obs: o formato da url acima é meramente ilustrativo e não define qualquer padrão de formato.
+---
 
-### Tipo de tela – SELECAO
+### `GET /api/v1/votos/resultado/{pautaId}`
+Retorna o resultado da votação de uma pauta específica.
 
-A tela do tipo SELECAO exibe uma lista de opções para que o usuário.
+**Resposta JSON:**
+```json
+{
+  "pautaId": 1,
+  "sim": 10,
+  "nao": 3,
+  "resultado": "APROVADO" // ou "REJEITADO", "EMPATE"
+}
+```
 
-O aplicativo envia uma requisição POST para a url informada e com o body definido pelo objeto dentro de cada item da lista de seleção, quando o mesmo é acionado, semelhando ao funcionamento dos botões da tela FORMULARIO.
+---
 
-# desafio-votacao
+## Pautas
+
+### `POST /api/v1/pautas`
+Cria uma nova pauta.
+
+**Body JSON:**
+```json
+{
+  "nome": "Título da pauta"
+}
+```
+
+**Retorno:** objeto `Pauta` criado.
+
+---
+
+### `GET /api/v1/pautas`
+Lista todas as pautas cadastradas.
+
+---
+
+### `GET /api/v1/pautas/{id}`
+Retorna os dados de uma pauta específica pelo ID.
+
+---
+
+## Sessões de Votação
+
+### `POST /api/v1/sessoes/abrir/{pautaId}?duracaoMinutos=10`
+Abre uma nova sessão de votação para a pauta informada.  
+**Parâmetro opcional:** `duracaoMinutos` (default se não informado).
+
+**Exemplo:**
+```bash
+POST /api/v1/sessoes/abrir/1?duracaoMinutos=5
+```
+
+**Retorno:** dados da sessão criada.
+
+### Deixarei uma collection disponível para donwload caso deseje testar pelo postman.
+
+Estará na raiz do projeto para facilitar o encontro(Votacao API.postman_collection.json)
+
+### Testes Unitários
+
+Para executar os testes unitários automatizados:
+
+- Com Maven:
+  ```bash
+  mvn test
+  ```
+- Com Gradle:
+  ```bash
+  ./gradlew test
+  ```
+
+Os testes cobrem cenários de sucesso, falha, validação de dados e integração com mocks dos serviços externos.
+
+### Testes de Performance
+
+- Atualmente, testes de performance podem ser realizados usando ferramentas externas como JMeter ou Gatling.
+- Criado cenário de teste unitário simulando alto envio de consumo de votos.
+- Foi posto configurações no próprio properties possibilitanto também visualização da performance no próprio console.
+
+---
+
+## Integração com Sistemas Externos
+
+- O sistema consulta o serviço externo de CPF (`CpfClient`) para validar se o associado pode votar.
+- Tratamento de exceções específicas para CPF inválido ou impossibilidade de votar.
+
+---
+
+## Boas Práticas e Considerações
+
+- Código simples, claro e modularizado.
+- Tratamento padronizado de erros e uso correto dos códigos HTTP.
+- Versionamento explícito da API para facilitar manutenção e futuras atualizações.
+- Testes que garantem a estabilidade da aplicação.
+- Documentação automática via Swagger para facilitar consumo da API por terceiros.
+
+---
+
+## Contato e Suporte
+
+Caso haja algum adendo ou dúvida sobre o projeto desenvolvido
+entrar em contato pelo mesmo email ao qual foi enviado(daniel2018arj@gmail.com ou daniel.arj.profissional@gmail.com).
+
+---
+
+**Obrigado pela oportunidade, aguardo retorno sobre o desafio!**

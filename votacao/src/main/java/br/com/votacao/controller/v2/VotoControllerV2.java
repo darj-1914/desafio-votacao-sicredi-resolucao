@@ -1,4 +1,4 @@
-package br.com.votacao.controller;
+package br.com.votacao.controller.v2;
 
 import br.com.votacao.client.CpfClient;
 import br.com.votacao.exception.CpfNotFoundException;
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/votos")
-public class VotoController {
+@RequestMapping("/api/v2/votos")
+public class VotoControllerV2 {
 
     private final VotoService votoService;
     private final PautaService pautaService;
     private final CpfClient cpfClient;
 
-    public VotoController(VotoService votoService, PautaService pautaService, CpfClient cpfClient) {
+    public VotoControllerV2(VotoService votoService, PautaService pautaService, CpfClient cpfClient) {
         this.votoService = votoService;
         this.pautaService = pautaService;
         this.cpfClient = cpfClient;

@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "15263cef-364a-48ab-9d5c-245522e2241e",
+		"name": "Votacao API",
+		"description": "Collection organizada com endpoints V1 e V2 da API de votação",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22973456"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "Pautas",
+					"item": [
+						{
+							"name": "Criar Pauta",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"titulo\": \"Título da pauta\",\n  \"descricao\": \"Descrição da pauta\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/pautas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"pautas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Pautas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/pautas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"pautas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Pauta por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/pautas/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"pautas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "ID da pauta"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sessoes",
+					"item": [
+						{
+							"name": "Abrir Sessão de Votação",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/sessoes/abrir/:pautaId?duracaoMinutos=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sessoes",
+										"abrir",
+										":pautaId"
+									],
+									"query": [
+										{
+											"key": "duracaoMinutos",
+											"value": "10",
+											"description": "Duração em minutos (opcional)"
+										}
+									],
+									"variable": [
+										{
+											"key": "pautaId",
+											"value": "1",
+											"description": "ID da pauta"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Votos",
+					"item": [
+						{
+							"name": "Registrar Voto",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"cpf\": \"12345678900\",\n  \"associadoId\": \"1\",\n  \"pautaId\": \"1\",\n  \"opcao\": \"SIM\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/votos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"votos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resultado da Votação",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/votos/resultado/:pautaId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"votos",
+										"resultado",
+										":pautaId"
+									],
+									"variable": [
+										{
+											"key": "pautaId",
+											"value": "1",
+											"description": "ID da pauta"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Endpoints versão 1"
+		},
+		{
+			"name": "v2",
+			"item": [
+				{
+					"name": "Pautas",
+					"item": [
+						{
+							"name": "Criar Pauta",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"titulo\": \"Título da pauta\",\n  \"descricao\": \"Descrição da pauta\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v2/pautas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"pautas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Pautas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v2/pautas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"pautas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Pauta por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v2/pautas/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"pautas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "ID da pauta"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sessoes",
+					"item": [
+						{
+							"name": "Abrir Sessão de Votação",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v2/sessoes/abrir/:pautaId?duracaoMinutos=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"sessoes",
+										"abrir",
+										":pautaId"
+									],
+									"query": [
+										{
+											"key": "duracaoMinutos",
+											"value": "10",
+											"description": "Duração em minutos (opcional)"
+										}
+									],
+									"variable": [
+										{
+											"key": "pautaId",
+											"value": "1",
+											"description": "ID da pauta"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Votos",
+					"item": [
+						{
+							"name": "Registrar Voto",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"cpf\": \"12345678900\",\n  \"associadoId\": \"1\",\n  \"pautaId\": \"1\",\n  \"opcao\": \"SIM\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v2/votos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"votos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resultado da Votação",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v2/votos/resultado/:pautaId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"votos",
+										"resultado",
+										":pautaId"
+									],
+									"variable": [
+										{
+											"key": "pautaId",
+											"value": "1",
+											"description": "ID da pauta"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Endpoints versão 2"
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
